@@ -183,15 +183,14 @@ plt.show()
 ```
 
 
-    
-![png](output_11_0.png)
-    
+   
+![output_11_0](https://user-images.githubusercontent.com/39878006/217124526-173d57bf-155b-4807-9aa6-d3e50030405d.png)
 
 
 
     
-![png](output_11_1.png)
-    
+![output_11_1](https://user-images.githubusercontent.com/39878006/217124573-a321d1b5-2f3b-4182-925e-1cc9de623a2e.png)
+  
 
 
 ## Defining a Linear Regression Model
@@ -446,8 +445,8 @@ plt.show()
 
 
     
-![png](output_29_0.png)
-    
+![output_29_0](https://user-images.githubusercontent.com/39878006/217124623-9f1d9afa-aa64-4fcf-9d6c-006446b0d775.png)
+ 
 
 
 ## Exact Solution
@@ -596,7 +595,8 @@ solve_via_gradient_descent( X=x_in, y=y_target)
 
 
     
-![png](output_39_1.png)
+
+![output_39_1](https://user-images.githubusercontent.com/39878006/217124655-2203424f-3854-42b7-b00e-2cecaf196ae1.png)
     
 
 
