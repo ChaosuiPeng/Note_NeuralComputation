@@ -196,9 +196,7 @@ plt.show()
 ## Defining a Linear Regression Model
 
 A linear regression model in our problem has the following form 
-$$
-f(x)=\mathbf{w}^\top \mathbf{x}+b=w_{1}x_{1}+w_{2}x_{2}+b,
-$$
+$f(x)=\mathbf{w}^\top \mathbf{x}+b=w_{1}x_{1}+w_{2}x_{2}+b,$
 where $\mathbf{x}$ is the input, $\mathbf{w}$ is called the weight and $b$ is known as the bias.
 The purpose of generating such a model is to predict an output (price) given an input (Industrialness, Avg Num Rooms). Given the model parameter $\mathbf{w},b$ and the new input $x$, the output predicted by our simple model is $\mathbf{w}^\top \mathbf{x}+b$. We will define a function named `linearmodel(x,w)` which represents this model. The function takes three arguments, the weight parameter $\mathbf{w}$, the bias parameter $b$ and the input $\mathbf{x}$, and it returns the predicted output $\mathbf{w}^\top \mathbf{x}+b$. 
 
