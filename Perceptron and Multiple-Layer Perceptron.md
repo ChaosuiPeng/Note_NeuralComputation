@@ -1,4 +1,4 @@
-### Perceptron and Multiple-Layer Perceptron
+## Perceptron and Multiple-Layer Perceptron
 In this exercise, you will learn the following
 * data generation with the random library
 * define a linear classification model
