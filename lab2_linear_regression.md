@@ -254,15 +254,49 @@ def linearmat_1(w, b, X):
 In the function `linearmat_1`, we do prediction by traversing all training examples one by one. This implementation is very slow. Python provides much more efficient implementation in terms of vectorization. By vectorization we mean that we write the prediction in terms of matrix. In Python, vectorized code written in numpy tend to be faster than code that uses a `for` loop. We now show how to achieve this.
 
 As discussed in the lecture, we can absorb the bias into the weight vector by adding a feature of `1`. The benefit is that we do not need to consider separately the bias parameter and the weight parameter. That is,
-![1675907954337](https://user-images.githubusercontent.com/39878006/217697542-7a1da1a8-867e-44d2-8230-747eec0675f6.png)
+
+$$
+X=\begin{pmatrix}
+    1 & (\mathbf{x}^{(1)})^\top \\
+    \vdots \\
+    1 & \mathbf{x}^{(n)})^\top
+  \end{pmatrix}=\begin{pmatrix}
+    1 & x_1^{(1)} & x_2^{(1)} & \ldots & x_d^{(1)} \\
+    \vdots & \vdots & \vdots & \vdots\\
+    1 & x_1^{(n)} & x_2^{(n)} & \ldots & x_d^{(n)}
+  \end{pmatrix},\quad \mathbf{y}=\begin{pmatrix}
+    y^{(1)} \\
+    \vdots \\
+    y^{(n)}
+  \end{pmatrix}.
+$$
 
 In this case, the predictions $\mathbf{t}$ can be written in terms of a matrix multiplication
-![1675908054065](https://user-images.githubusercontent.com/39878006/217697900-6ac6e0d7-edb6-4801-8c68-9c2cf0204f39.png)
-
-where we use a new notation $\mathbf{w}=$
 
 $$
 \begin{pmatrix}
+  b\\
+  w_1\\
+  \vdots\\
+  w_d
+  \end{pmatrix}.
+$$
+
+$$
+\mathbf{t}=X\mathbf{w}=\begin{pmatrix}
+    1 & (\mathbf{x}^{(1)})^\top \\
+    \vdots \\
+    1 & \mathbf{x}^{(n)})^\top
+  \end{pmatrix}\mathbf{w}=\begin{pmatrix}
+    1 & x_1^{(1)} & x_2^{(1)} & \ldots & x_d^{(1)} \\
+    \vdots & \vdots & \vdots & \vdots\\
+    1 & x_1^{(n)} & x_2^{(n)} & \ldots & x_d^{(n)}
+  \end{pmatrix}\begin{pmatrix}
+  b\\
+  w_1\\
+  \vdots\\
+  w_d
+  \end{pmatrix}, \quad\text{where we use a new notation }\;\mathbf{w}=\begin{pmatrix}
   b\\
   w_1\\
   \vdots\\
