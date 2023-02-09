@@ -1,4 +1,4 @@
-## Neural Computation Exercise 2: Linear Regression and Gradient Descent
+# Linear Regression and Gradient Descent
 
 In this exercise, we'll go through another example of linear regression from an implementation
 perspective. We will use the `Boston Housing dataset`, and predict the median cost of a home
