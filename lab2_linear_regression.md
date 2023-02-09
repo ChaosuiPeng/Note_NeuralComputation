@@ -557,23 +557,10 @@ solve_via_gradient_descent( X=x_in, y=y_target)
     Weight after 9999 iteration: [ 31.11399828 -16.44305594   6.7981133 ]
     
 
-
-    
-
 ![output_39_1](https://user-images.githubusercontent.com/39878006/217124655-2203424f-3854-42b7-b00e-2cecaf196ae1.png)
     
-
-
-
-
 
     array([ 31.11399828, -16.44305594,   6.7981133 ])
 
 
-
 As you can see, gradient descent find solutions very similar to the exact solution. This shows that gradient descent is an effective method to find the best linear model in our case.
-
-
-```python
-
-```
