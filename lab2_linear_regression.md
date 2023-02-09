@@ -227,7 +227,8 @@ def linearmodel(w, b, x):
     return y
 ```
 
-The function `linearmodel` gives a prediction on a single example $\mathbf{x}$. It is often the case that we need to provide predictions on several examples $$(\mathbf{x}^{(1)},y^{(1)}),\ldots,(\mathbf{x}^{(n)},y^{(n)})$$ simultaneously. We therefore collect $n$ training examples $(\mathbf{x}^{(1)},y^{(1)}),\ldots,(\mathbf{x}^{(n)},y^{(n)})$ into an input matrix $X\in\mathbb{R}^{n\times d}$ ($d$ is the number of features) and a vector $\mathbf{y}\in\mathbb{R}^n$. That is
+The function `linearmodel` gives a prediction on a single example $\mathbf{x}$. It is often the case that we need to provide predictions on several examples $$(\mathbf{x}^{(1)},y^{(1)}),\ldots,(\mathbf{x}^{(n)},y^{(n)})$$ simultaneously. We therefore collect $n$ training examples $(\mathbf{x}^{(1)},y^{(1)}),\ldots,(\mathbf{x}^{(n)},y^{(n)})$ into an input matrix $X\in\mathbb{R}^{n\times d}$ ( $d$ is the number of features) and a vector $\mathbf{y}\in\mathbb{R}^n$. 
+That is
 $$
 X=\begin{pmatrix}
     (\mathbf{x}^{(1)})^\top \\
