@@ -258,15 +258,18 @@ As discussed in the lecture, we can absorb the bias into the weight vector by ad
 
 In this case, the predictions $\mathbf{t}$ can be written in terms of a matrix multiplication
 ![1675908054065](https://user-images.githubusercontent.com/39878006/217697900-6ac6e0d7-edb6-4801-8c68-9c2cf0204f39.png)
-where we use a new notation
+
+where we use a new notation $\mathbf{w}=$
+
 $$
-\mathbf{w}=\begin{pmatrix}
+\begin{pmatrix}
   b\\
   w_1\\
   \vdots\\
   w_d
   \end{pmatrix}.
 $$
+
 Note here we include the bias in the weight vector $\mathbf{w}$.
 
 
