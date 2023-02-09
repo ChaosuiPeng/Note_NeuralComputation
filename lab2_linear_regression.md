@@ -274,15 +274,6 @@ $$
 In this case, the predictions $\mathbf{t}$ can be written in terms of a matrix multiplication
 
 $$
-\begin{pmatrix}
-  b\\
-  w_1\\
-  \vdots\\
-  w_d
-  \end{pmatrix}.
-$$
-
-$$
 \mathbf{t}=X\mathbf{w}=\begin{pmatrix}
     1 & (\mathbf{x}^{(1)})^\top \\
     \vdots \\
