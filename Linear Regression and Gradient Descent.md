@@ -352,7 +352,7 @@ print('diff in two implementations is %s' % np.dot(p2 - p1, p2 - p1))
     diff in two implementations is 1.4988357199199224e-29
     
 
-Note that **vectorization** is much faster than **non-vectorization**. Also, these two approaches yield almost the same results: the difference is less than $10^{-28}$.|
+Note that **vectorization** is much faster than **non-vectorization**. Also, these two approaches yield almost the same results: the difference is less than $10^{-28}$.
 
 ## Defining the Cost Function
 
