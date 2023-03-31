@@ -368,7 +368,7 @@ $$
 It is recommended to use $s\in[20,100]$. Depending on different $s$, minibatch gradient descent recovers several algorithms
 
 $$
-  s<n 
+\s<n 
 $$
 
 $$
