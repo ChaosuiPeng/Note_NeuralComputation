@@ -369,6 +369,12 @@ It is recommended to use $s\in[20,100]$. Depending on different $s$, minibatch g
 
 $$
 \begin{align*}
+  s<n 
+\end{align*}
+$$
+
+$$
+\begin{align*}
   s<n \; \Rightarrow\; \text{Minibatch gradient descent}\\
   s=1 \; \Rightarrow\; \text{Stochastic gradient descent}\\
   s=n \; \Rightarrow\; \text{Batch gradient descent}
