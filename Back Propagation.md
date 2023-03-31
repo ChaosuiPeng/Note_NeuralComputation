@@ -32,7 +32,7 @@ def make_dataset(num_points):
     # Generate positive examples (labeled 1).
     for i in range(num_points // 2):
         # the radius of positive examples
-        r = np.random.uniform(0, radius*0.5)
+        r = np.random.uniform(0, radius*0.5) # 从(0, radius*0.5)这个均匀分布的区域中随机采样
         angle = np.random.uniform(0, 2*math.pi)
         x = r * math.sin(angle)
         y = r * math.cos(angle)
@@ -80,6 +80,15 @@ params['W3'] = np.random.randn(3)
 params['b3'] = 0
 ```
 
+```python
+# "np.random.randn"  
+# Return a sample (or samples) 
+# from the "standard normal" distribution
+test = np.random.randn(100)
+plt.scatter(test, np.ones(100), color='red') 
+```
+![1680249089904](https://user-images.githubusercontent.com/39878006/229059107-6b39c5ff-0f7b-4fc9-a03a-4690565835bd.png)
+
 ### Forward Propagation
 
 We now implement **forward propagation** to compute the output of the network. According to the `forward propagation` algorithm, we know
@@ -116,7 +125,7 @@ Let's visualize the predictions of our untrained network. As we can see, the net
 num_points = 200
 
 # we first traverse two features in the region (-6,6)
-x1s = np.linspace(-6.0, 6.0, num_points)
+x1s = np.linspace(-6.0, 6.0, num_points) # 在线性空间中以均匀步长生成数字序列
 x2s = np.linspace(-6.0, 6.0, num_points)
 
 # we now use forward propagation to compute the matrix Y
@@ -129,7 +138,7 @@ for i in range(num_points):
         Y[i, j] = forward(x, params)
 # we now visualize the data
 X1, X2 = np.meshgrid(x1s, x2s)
-plt.pcolormesh(X1, X2, Y, cmap=plt.cm.get_cmap('YlGn'))
+plt.pcolormesh(X1, X2, Y, cmap=plt.cm.get_cmap('YlGn'), shading='auto')
 plt.colorbar()
 plt.scatter(data[:num_data//2, 0], data[:num_data//2, 1], color='red') 
 plt.scatter(data[num_data//2:, 0], data[num_data//2:, 1], color='blue') 
@@ -157,8 +166,8 @@ def sigmoid_derivative(x):
     Returns:
      gradient: gradient of the sigmoid function with respect to x
     """
-    outcome = sigmoid(x)
-    return outcome * (1 - outcome)
+
+    return sigmoid(x) * (1 - sigmoid(x))
 ```
 
 ### Implement back propagation
@@ -214,12 +223,12 @@ def backprop(x, y, params):
     W2 = params['W2']
     W3 = params['W3']
     
-    # To Do: insert your code to compute z2, a2, z3 and a3
-    z2 = np.dot(W2, x)  + params['b2']
+    # To Do: insert your code to compute z2, a2, z3, a3 and loss
+    z2 = np.dot(W2, x) + params['b2']
     a2 = sigmoid(z2)
-    z3 = np.dot(W3, a2)  + params['b3']
+    z3 = np.dot(W3, a2) + params['b3']
     a3 = sigmoid(z3)
-    loss = (a3 - y) ** 2 / 2
+    loss = (1/2) * np.square(a3 - y)
     
     # Perform backwards computation.
     # To Do: insert your code to compute z3_bar, z2_bar, W3_bar, W2_bar, b3_bar, b2_bar
@@ -232,10 +241,10 @@ def backprop(x, y, params):
     b2_bar is the gradient of C w.r.t. b2
     Hint: you may need the np.outer function to realize the multiplication v1 * v2.T for two vectors v1, v2
     '''
-    z3_bar = (a3 - y) * sigmoid_derivative(z3)
-    z2_bar = np.multiply(sigmoid_derivative(z2), np.dot(W3.T, z3_bar))
-    W3_bar = z3_bar * a2
-    W2_bar = np.outer(z2_bar, x)
+    z3_bar = sigmoid_derivative(z3) * (a3 - y)
+    z2_bar = np.multiply(np.dot(W3.T, z3_bar), sigmoid_derivative(z2))
+    W3_bar = z3_bar * a2 # 这里为什么不需要np.outer(z2_bar, x.T)？
+    W2_bar = np.outer(z2_bar, x.T)
     b3_bar = z3_bar
     b2_bar = z2_bar
     
@@ -247,6 +256,7 @@ def backprop(x, y, params):
     grads['b2'] = b2_bar
     
     return grads, loss
+
 ```
 
 ### Train the network
@@ -316,7 +326,7 @@ for i in range(num_points):
         x = np.array([x1s[i], x2s[j]])
         Y[i, j] = forward(x, params)
 X1, X2 = np.meshgrid(x1s, x2s)
-plt.pcolormesh(X1, X2, Y, cmap=plt.cm.get_cmap('YlGn'))
+plt.pcolormesh(X1, X2, Y, cmap=plt.cm.get_cmap('YlGn'), shading='auto')
 plt.colorbar()
 plt.scatter(data[:num_data//2, 0], data[:num_data//2, 1], color='red') 
 plt.scatter(data[num_data//2:, 0], data[num_data//2:, 1], color='blue') 
@@ -326,7 +336,7 @@ plt.scatter(data[num_data//2:, 0], data[num_data//2:, 1], color='blue')
 
 As illustrated above, the output on most positive examples have values larger than 0.5, and the output on most negative examples have values smaller than 0.5. This means that the trained network indeed does a good performance on classification in this problem!
 
-We can compute its accuracy on the training dataset. To this aim, we go through all training examples and compute the predicted label. Since the sigmoid function outputs the number between 0 and 1, we can use 0.5 as the threshold. That is, we predict it as a positiv example if the output of the network is larger than 0.5, and a negative example otherwise. As you can see, we achieve a very high accuracy. This demonstrates the efficiency of the network in solving the binary classification problem.
+We can compute its accuracy on the training dataset. To this aim, we go through all training examples and compute the predicted label. Since the sigmoid function outputs the number between 0 and 1, we can use 0.5 as the threshold. That is, we predict it as a positive example if the output of the network is larger than 0.5, and a negative example otherwise. As you can see, we achieve a very high accuracy. This demonstrates the efficiency of the network in solving the binary classification problem.
 
 ```python
 from sklearn.metrics import accuracy_score
