@@ -1,7 +1,5 @@
 # Back Propagation
 
-$$ C(a^3,y)=\frac{1}{2}(a^3-y)^2, $$
-
 In this exercise, we will solve a binary classification problem by a 2-layer neural network. The data is not linearly separable and therefore the perceptron algorithm introduced in the last week will not work. We will train the neural network by gradient descent. To this aim, we need to compute gradients by the backpropagation algorithm.
 
 After finishing this exercise, you will learn the following
@@ -166,14 +164,18 @@ def sigmoid_derivative(x):
 ### Implement back propagation
 
 We now implement the back propagation to compute the gradients of the loss function on the parameters $W^2, W^3, b^2, b^3$. We consider the square loss
+
 $$
 C(a^3,y)=\frac{1}{2}(a^3-y)^2,
 $$
+
 where $a^3$ is the output of the network with the input $\mathbf{x}$. According to the back propagation algorithm, we need to compute the back-propagated gradients
+
 $$
 \delta^3:=\frac{\partial C}{\partial \mathbf{z}^3}\quad\text{and}\quad\delta^2=\frac{\partial C}{\partial \mathbf{z}^2}.
 $$
 In particular, the `back-propagated gradients` for the **output layer** can be derived by (note that $\delta^3\in\mathbb{R}$ since the last layer only has 1 node)
+
 $$
 \delta^3=\sigma'(z^3)(a^3-y).
 $$
