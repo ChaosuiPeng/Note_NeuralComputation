@@ -89,7 +89,7 @@ plt.scatter(test, np.ones(100), color='red')
 ```
 ![1680249089904](https://user-images.githubusercontent.com/39878006/229059107-6b39c5ff-0f7b-4fc9-a03a-4690565835bd.png)
 
-### Forward Propagation
+## Forward Propagation
 
 We now implement **forward propagation** to compute the output of the network. According to the `forward propagation` algorithm, we know
 $$\mathbf{z}^2 = \mathbf{W}^2x+\mathbf{b}^2$$
@@ -170,7 +170,7 @@ def sigmoid_derivative(x):
     return sigmoid(x) * (1 - sigmoid(x))
 ```
 
-### Implement back propagation
+## Implement back propagation
 
 We now implement the back propagation to compute the gradients of the loss function on the parameters $W^2, W^3, b^2, b^3$. We consider the square loss
 
@@ -259,7 +259,7 @@ def backprop(x, y, params):
 
 ```
 
-### Train the network
+## Train the network
 
 We can train our network parameters using gradient descent once we have computed derivatives using the backpropagation algorithm. Recall that the gradient descent update rule for a given parameter $p$ and a learning rate $\eta$ is:
 
@@ -351,7 +351,7 @@ acc_tr = accuracy_score(predicted_y, labels)
 print(acc_tr)
 ```
 
-### Minibatch Gradient Descent
+## Minibatch Gradient Descent
 
 In the above implementation, we use gradient descent to train the neural network. We now use minibatch gradient descent to train the neural network. The basic idea is to use a subsample to compute an approximate gradient. 
 
