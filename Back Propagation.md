@@ -346,25 +346,33 @@ print(acc_tr)
 In the above implementation, we use gradient descent to train the neural network. We now use minibatch gradient descent to train the neural network. The basic idea is to use a subsample to compute an approximate gradient. 
 
 The optimization problem in ML often has a **sum** structure in the sense
+
 $$
 C(\mathbf{w})=\frac{1}{n}\sum_{i=1}^nC_i(\mathbf{w}),
 $$
+
 where $C_i(\mathbf{w})$ is the loss of the model $\mathbf{w}$ on the $i$-th example. In our problem, $C_i$ takes the form $C_i(\mathbf{w})=\frac{1}{2}(nn(x^{(i)})-y^{(i)})^2$, where $nn(x^{(i)})$ is the output of the neural network with the input $x^{(i)}$.
 
 Gradient descent requires to go through all training examples to compute a single gradient, which may be time consuming if the sample size is large. Minibatch gradient descent improves the efficiency by using a subset of training examples to build an **approximate** gradient. At each iteration, it first randomly draws a set $I\subset\{1,2,\ldots,n\}$ of size $s$, where we often call $s$ the minibatch size. Then it builds an approximate gradient by
+
 $$
 \nabla_I(\mathbf{w}^{(t)})=\frac{1}{s}\sum_{i\in I}\nabla C_i(\mathbf{w}^{(t)})
 $$
+
 Now, it updates the model by
+
 $$
 \mathbf{w}^{(t+1)}=\mathbf{w}^{(t)}-\eta_t\nabla_I(\mathbf{w}^{(t)}).
 $$ 
+
 It is recommended to use $s\in[20,100]$. Depending on different $s$, minibatch gradient descent recovers several algorithms
-\begin{align*}
+
+$$\begin{align*}
   s<n \;&\Rightarrow\;\text{Minibatch gradient descent}\\
   s=1 \;&\Rightarrow\;\text{Stochastic gradient descent} \\
   s=n \;&\Rightarrow\;\text{Batch gradient descent}
-\end{align*}
+\end{align*}$$
+
 In the following, we request you to finish the following implementation of the `minibatch gradient descent` on the linear regression problem. To search a subset of $\{1,2,\ldots,n\}$, we recommend you to use the function `random.sample`. The synatx is `random.sample(sequence, k)`, which returns $k$ length new list of elements chosen from the `sequence`. More details can be found  [here](https://www.geeksforgeeks.org/python-random-sample-function/)
 
 ```python
