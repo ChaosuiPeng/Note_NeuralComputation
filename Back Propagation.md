@@ -51,7 +51,7 @@ def make_dataset(num_points):
     data = np.asarray(data)
     labels = np.asarray(labels)
     return data, labels
-    ```
+```
 
 ### Visualization of Data
 We first apply `make_dataset` to generate a dataset of 200 examples. We visualise the dataset using a `scatter` plot using the scatter function in the `matplotlib.pylot` module.
