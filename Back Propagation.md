@@ -1,4 +1,7 @@
 # Back Propagation
+
+$\sqrt{3x-1}+(1+x)^2$
+
 In this exercise, we will solve a binary classification problem by a 2-layer neural network. The data is not linearly separable and therefore the perceptron algorithm introduced in the last week will not work. We will train the neural network by gradient descent. To this aim, we need to compute gradients by the backpropagation algorithm.
 
 After finishing this exercise, you will learn the following
