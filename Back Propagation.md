@@ -174,16 +174,21 @@ where $a^3$ is the output of the network with the input $\mathbf{x}$. According 
 $$
 \delta^3:=\frac{\partial C}{\partial \mathbf{z}^3}\quad\text{and}\quad\delta^2=\frac{\partial C}{\partial \mathbf{z}^2}.
 $$
+
 In particular, the `back-propagated gradients` for the **output layer** can be derived by (note that $\delta^3\in\mathbb{R}$ since the last layer only has 1 node)
 
 $$
 \delta^3=\sigma'(z^3)(a^3-y).
 $$
+
 Then, the recursive relationship allows us to compute the `back-propagated gradients` for the **hidden layer** as follows
+
 $$
 \delta^2=(\mathbf{W}^3)^\top\delta^3\odot \sigma'(\mathbf{z}^2).
 $$
-This finishes the computation of the `back-propagated gradients`. We now can use these `back-propagated gradients` to compute the gradients of the loss $C$ on $\mathbf{W}^2, \mathbf{W}^3, \mathbf{b}^2, \mathbf{b}^3$. According to our discussion in the lecture, we know
+
+This finishes the computation of the `back-propagated gradients`. We now can use these `back-propagated gradients` to compute the gradients of the loss $ C $ on $\mathbf{W}^2, \mathbf{W}^3, \mathbf{b}^2, \mathbf{b}^3$. According to our discussion in the lecture, we know
+
 $$
 \frac{\partial C}{\partial \mathbf{W}^{\ell}}=\delta^\ell(\mathbf{a}^{\ell-1})^\top,\qquad\ell=2,3.
 $$
