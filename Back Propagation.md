@@ -187,7 +187,7 @@ $$
 \delta^2=(\mathbf{W}^3)^\top\delta^3\odot \sigma'(\mathbf{z}^2).
 $$
 
-This finishes the computation of the `back-propagated gradients`. We now can use these `back-propagated gradients` to compute the gradients of the loss $ C $ on $\mathbf{W}^2, \mathbf{W}^3, \mathbf{b}^2, \mathbf{b}^3$. According to our discussion in the lecture, we know
+This finishes the computation of the `back-propagated gradients`. We now can use these `back-propagated gradients` to compute the gradients of the loss $C$ on $\mathbf{W}^2, \mathbf{W}^3, \mathbf{b}^2, \mathbf{b}^3$. According to our discussion in the lecture, we know
 
 $$
 \frac{\partial C}{\partial \mathbf{W}^{\ell}}=\delta^\ell(\mathbf{a}^{\ell-1})^\top,\qquad\ell=2,3.
