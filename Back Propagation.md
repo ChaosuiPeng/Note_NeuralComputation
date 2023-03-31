@@ -367,11 +367,13 @@ $$
 
 It is recommended to use $s\in[20,100]$. Depending on different $s$, minibatch gradient descent recovers several algorithms
 
-$$\begin{align*}
+$$
+\begin{align*}
   s<n \;&\Rightarrow\;\text{Minibatch gradient descent}\\
   s=1 \;&\Rightarrow\;\text{Stochastic gradient descent} \\
   s=n \;&\Rightarrow\;\text{Batch gradient descent}
-\end{align*}$$
+\end{align*}
+$$
 
 In the following, we request you to finish the following implementation of the `minibatch gradient descent` on the linear regression problem. To search a subset of $\{1,2,\ldots,n\}$, we recommend you to use the function `random.sample`. The synatx is `random.sample(sequence, k)`, which returns $k$ length new list of elements chosen from the `sequence`. More details can be found  [here](https://www.geeksforgeeks.org/python-random-sample-function/)
 
