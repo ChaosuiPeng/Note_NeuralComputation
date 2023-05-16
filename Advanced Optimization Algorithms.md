@@ -7,13 +7,13 @@ GD：【优点】用的是true gradient，所以下降的方向是最理想的�
 
 提出Momentum：代入一个”verlocity"的概念，把历史的gradient按照不同的权重叠加（考虑历史轨迹），再去更新W。【好处是】同一方向前进的时候能越跑越快、而且可以概率get rid of flat region跳出local optima，而且对于来回波动（正负反复切换）的情况，也能有所改善、做到平稳前进（unlike GD，会oscillate a lot）。【问题是】因为考虑过多历史轨迹，经常overshoot。
 
-再提出Nesterov Momentum：再考虑历史轨迹的情况下，再叠加一个预测轨迹，综合二者真正更新w。通过look ahead有效避免overshoot。
+再提出Nesterov Momentum：再考虑历史轨迹的情况下，再叠加一个预测轨迹，综合二者真正更新w。通过looking ahead point有效避免overshooting behaviour。
 
 ### SD和SGD（优化update的计算效率）
 
 GD的问题是：对每一个example都去计算gradient这个cost太大了。每一个iteration的computation cost是O(n)
 
-1951的Stochastic Gradient Descent：每次只draw一个example with equal probability from dataset去compute gradient。【缺点】前进路线非常曲折。【优点】效果不错，而且computation cost变成了O(1)。【原理】sum structure告诉我们（缺了一些数学解释！！！！），if we consider all possible realization of it, we recover the true gradient.
+1951的Stochastic Gradient Descent：每次只draw一个example with equal probability from dataset去compute gradient。【缺点】前进路线非常曲折，converge得很慢。【优点】最后的效果不错，而且computation cost变成了O(1)。【每次迭代只用single example的原理】sum structure告诉我们（缺了一些数学解释！！！！），if we consider all possible realization of it, we recover the true gradient.
 
 ![1684234305627(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/c7766ded-df6f-4566-8d5e-57bd739436fe)
 
