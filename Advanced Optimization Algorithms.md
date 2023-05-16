@@ -1,6 +1,5 @@
 # Advanced Optimization Algorithms
 
-## Note
 ### 快速过一遍GD、Momentum和Nesterov Momentum
 
 GD的问题是：沿一个方向走得慢、而且可能被trapped在local optima。
