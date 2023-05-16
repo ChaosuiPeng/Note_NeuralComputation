@@ -1,6 +1,7 @@
 # Advanced Optimization Algorithms
 
-### 快速过一遍GD、Momentum和Nesterov Momentum
+从Gradient Descent出发：
+### GD、Momentum和Nesterov Momentum（优化update的step size和方向）
 
 GD的问题是：沿一个方向走得慢、而且可能被trapped在local optima。
 
@@ -8,7 +9,7 @@ GD的问题是：沿一个方向走得慢、而且可能被trapped在local optim
 
 再提出Nesterov Momentum：再考虑历史轨迹的情况下，再叠加一个预测轨迹，综合二者真正更新w。通过look ahead有效避免overshoot。
 
-### 快速过一遍GD和SGD
+### SD和SGD（优化update的计算效率）
 
 GD的问题是：对每一个example都去计算gradient这个cost太大了。每一个iteration的computation cost是O(n)
 
@@ -16,8 +17,24 @@ GD的问题是：对每一个example都去计算gradient这个cost太大了。�
 
 ![1684234305627(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/c7766ded-df6f-4566-8d5e-57bd739436fe)
 
-### 一些结合：SGD + Momentum, SGD + Nesterov Momentum
-These can be extended to Mini-batch variant!
+⚠ 一些结合：SGD + Momentum, SGD + Nesterov Momentum. These can be extended to Mini-batch variant!
+
+### Adaptive Gradient Algorithm (AdaGrad), Root Mean Square Propagation (RMSProp) 和 Adaptive Moment Estimation (Adam)（对于多维数据的优化）
+GD和SGD对于每一个feature都给了同样的update。
+
+SGD由每次抽一个，这个过程会给dense feature更多的attention，which is midleading if sparse features are relevant。
+
+AdaGrad【优点】对于不同的features (dense / sparse)给到不同的learning rates，且more updates means more decay（数学上解释一下为什么阿！！！）。【缺点】迭代越多，dense feature能affect的程度越小，model的更新变得aggressive。
+
+RMSProp【优点】slow down AdaGrad中learning rate decay的问题。
+
+Adam = Momentum + RMSProp
+
+### 对比AdaGrad和Momentum
+两者都可以accelerate updates in horizontal direction and slow down in vertical direction，but what's the difference?
+
+![1684240258830](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/80e1924e-e7f5-48b7-a098-2502be02e0bd)
+
 
 ## Lab
 In this exercise, we'll develop implementations of advanced optimization algorithms. As in Exercise 2, we will use the Boston Housing dataset and run some advanced optimization algorithms to solved the linear regression problems.
