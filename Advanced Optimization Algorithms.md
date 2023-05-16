@@ -11,6 +11,7 @@ GD的问题是：沿一个方向走得慢、而且可能被trapped在local optim
 GD的问题是：对每一个example都去计算gradient这个cost太大了。每一个iteration的computation cost是O(n)
 
 1951的Stochastic Gradient Descent：每次只draw一个example with equal probability from dataset去compute gradient。computation cost变成了O(1)。【原理】sum structure告诉我们（缺了一些数学解释！！！！），if we consider all possible realization of it, we recover the true gradient.
+
 ![1684234305627(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/c7766ded-df6f-4566-8d5e-57bd739436fe)
 
 # Advanced Optimization Algorithms
