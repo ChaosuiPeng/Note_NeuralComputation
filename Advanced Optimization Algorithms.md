@@ -1,3 +1,6 @@
+# Advanced Optimization Algorithms
+
+## Note
 ### 快速过一遍GD、Momentum和Nesterov Momentum
 
 GD的问题是：沿一个方向走得慢、而且可能被trapped在local optima。
@@ -10,12 +13,14 @@ GD的问题是：沿一个方向走得慢、而且可能被trapped在local optim
 
 GD的问题是：对每一个example都去计算gradient这个cost太大了。每一个iteration的computation cost是O(n)
 
-1951的Stochastic Gradient Descent：每次只draw一个example with equal probability from dataset去compute gradient。computation cost变成了O(1)。【原理】sum structure告诉我们（缺了一些数学解释！！！！），if we consider all possible realization of it, we recover the true gradient.
+1951的Stochastic Gradient Descent：每次只draw一个example with equal probability from dataset去compute gradient。【缺点】前进路线非常曲折。【优点】效果不错，而且computation cost变成了O(1)。【原理】sum structure告诉我们（缺了一些数学解释！！！！），if we consider all possible realization of it, we recover the true gradient.
 
 ![1684234305627(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/c7766ded-df6f-4566-8d5e-57bd739436fe)
 
-# Advanced Optimization Algorithms
+### 一些结合：SGD + Momentum, SGD + Nesterov Momentum
+These can be extended to Mini-batch variant!
 
+## Lab
 In this exercise, we'll develop implementations of advanced optimization algorithms. As in Exercise 2, we will use the Boston Housing dataset and run some advanced optimization algorithms to solved the linear regression problems.
 
 In this exercise, you will learn the following
