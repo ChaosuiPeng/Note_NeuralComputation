@@ -3,7 +3,7 @@
 从Gradient Descent出发：
 ### GD、Momentum和Nesterov Momentum（优化update的step size和方向）
 
-GD的问题是：沿一个方向走得慢、而且可能被trapped在local optima。
+GD的问题是：沿一个方向走得慢、而且可能被trapped在local optima。 
 
 提出Momentum：代入一个”verlocity"的概念，把历史的gradient按照不同的权重叠加（考虑历史轨迹），再去更新W。【好处是】同一方向前进的时候能越跑越快、而且可以概率get rid of flat region跳出local optima，而且对于来回波动（正负反复切换）的情况，也能有所改善、做到平稳前进（unlike GD，会oscillate a lot）。【问题是】因为考虑过多历史轨迹，经常overshoot。
 
