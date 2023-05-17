@@ -105,6 +105,20 @@ from sklearn
 Scale input vectors individually to unit norm (vector length).
 Returns Normalized input X
 
+**- plt的一些用法**
+```python
+# we plot the cost w.r.t. the iteration number
+plt.plot(idx_gd, err_gd, color="red", linewidth=2.5, linestyle="-", label="gradient descent") #  gradient descent
+plt.plot(idx_momentum, err_momentum, color="blue", linewidth=2.5, linestyle="-", label="momentum") # momentum
+plt.legend(loc='upper right', prop={'size': 12})
+plt.title('comparison between gradient descent and momentum')
+plt.xlabel("number of iterations")
+plt.ylabel("cost")
+plt.grid()
+plt.show()
+```
+![1684337354651](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/4b053084-577f-4a37-8818-6af4b5e99141)
+
 
 # Advanced Optimization Algorithms
 In this exercise, we'll develop implementations of advanced optimization algorithms. We will use the Boston Housing dataset and run some advanced optimization algorithms to solved the linear regression problems.
