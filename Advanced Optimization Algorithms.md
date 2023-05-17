@@ -35,7 +35,7 @@ Adam = Momentum + RMSProp
 ![1684240258830](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/80e1924e-e7f5-48b7-a098-2502be02e0bd)
 
 # Recap: Python
-**- shape(array a)**
+**- shape(a)**
 
 Return the shape of an array
 
