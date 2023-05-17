@@ -100,7 +100,10 @@ array([[1, 2, 5],
 array([1, 2, 3, 4, 5, 6])
 ```
 
-
+**- normalize(X, norm='l2', \*, axis=1, copy=True, return_norm=False)**
+from sklearn
+Scale input vectors individually to unit norm (vector length).
+Returns Normalized input X
 
 
 # Advanced Optimization Algorithms
@@ -124,18 +127,30 @@ from sklearn import preprocessing   # for normalization
 ## Boston Housing Data
 
 The Boston Housing data is one of the datasets available in sklearn.
-We can import the dataset and preprocess it as follows. Note we add a feature of $1$ to `x_input` to get a n x (d+1) matrix `x_in`
-
 ```python
+# 载入数据
 from sklearn.datasets import load_boston
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore")
     boston_data = load_boston()
+
 data = boston_data['data']
 x_input = data  # a data matrix
 y_target = boston_data['target'] # a vector for all outputs
+```
+
+We can import the dataset and preprocess it as follows. Note we add a feature of $1$ to `x_input` to get a n x (d+1) matrix `x_in`
+```python
 # add a feature 1 to the dataset, then we do not need to consider the bias and weight separately
-x_in = np.concatenate([np.ones([np.shape(x_input)[0], 1]), x_input], axis=1)
+# 对506-by-13的x_input array，统一在第一列前插一列1.
+# 生成506-by-1的全1 array。concatenate到x_input左边
+# x_in = np.concatenate([np.ones([np.shape(x_input)[0], 1]), x_input], axis=1)
+num_row = np.shape(x_input)[0]
+x_1 = np.ones( [num_row, 1] )
+x_in = np.concatenate([x_1, x_input], axis=1)
+
 # we normalize the data so that each has regularity
+# 正则化
 x_in = preprocessing.normalize(x_in)
 ```
+
