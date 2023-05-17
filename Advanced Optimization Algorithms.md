@@ -36,7 +36,9 @@ Adam = Momentum + RMSProp
 
 # Recap: Python
 **- shape(array a)**
+
 Return the shape of an array
+
 returns tuple of ints.
 ```python
 >>> np.shape(np.eye(3))
@@ -53,8 +55,11 @@ returns tuple of ints.
 ```
 
 
-**- ones(shape, dtype=None, order='C', *, like=None)**
+**- ones(shape)**
+
 Return a new array of given shape and type, filled with ones.
+
+shape : int or sequence of ints. Shape of the new array, e.g., ``(2, 3)`` or ``2``.
 ```python
 >>> np.ones(5)
 array([1., 1., 1., 1., 1.])
@@ -74,7 +79,9 @@ array([[1.,  1.],
 
 
 **- concatenate((a1, a2, ...), axis=0)**
+
 The arrays must have the same shape.
+
 Join a sequence of arrays along an existing axis. 
 ```python
 >>> a = np.array([[1, 2], [3, 4]])
