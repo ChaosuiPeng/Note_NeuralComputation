@@ -1,6 +1,5 @@
-# Advanced Optimization Algorithms
+# Recap: 从Gradient Descent出发
 
-从Gradient Descent出发：
 ### GD、Momentum和Nesterov Momentum（优化update的step size和方向）
 
 GD：【优点】用的是true gradient，所以下降的方向是最理想的。【缺点】计算开销大，且沿一个方向走得慢，还可能被trapped在local optima。 
@@ -35,16 +34,37 @@ Adam = Momentum + RMSProp
 
 ![1684240258830](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/80e1924e-e7f5-48b7-a098-2502be02e0bd)
 
+# Recap: Python
+- concatenate((a1, a2, ...), axis=0)
+The arrays must have the same shape.
+Join a sequence of arrays along an existing axis. 
+```python
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6]])
+np.concatenate((a, b), axis=0)
+```
+![1684301108162](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/f4893054-5935-4a21-9df2-2aefb77253f7)
 
-## Lab
-In this exercise, we'll develop implementations of advanced optimization algorithms. As in Exercise 2, we will use the Boston Housing dataset and run some advanced optimization algorithms to solved the linear regression problems.
+```python
+np.concatenate((a, b.T), axis=1)
+```
+![1684301117419](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/ba58122a-0196-41b9-9c46-89abe99757ed)
+
+```python
+np.concatenate((a, b), axis=None)
+```
+![1684301140782(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/1bcb7f36-a2c6-46d8-b1e5-d4cb43dcaa9c)
+
+
+
+# Advanced Optimization Algorithms
+In this exercise, we'll develop implementations of advanced optimization algorithms. We will use the Boston Housing dataset and run some advanced optimization algorithms to solved the linear regression problems.
 
 In this exercise, you will learn the following
 * implement the `momentum` method
 * implement the `Nesterov momentum` method
 * implement the `minibatch gradient descent` method
 * implement the `adaptive (stochastic) gradient descent` method
-
 
 ```python
 import matplotlib
@@ -57,7 +77,7 @@ from sklearn import preprocessing   # for normalization
 
 ## Boston Housing Data
 
-The Boston Housing data is one of the  datasets available in sklearn.
+The Boston Housing data is one of the datasets available in sklearn.
 We can import the dataset and preprocess it as follows. Note we add a feature of $1$ to `x_input` to get a n x (d+1) matrix `x_in`
 
 ```python
