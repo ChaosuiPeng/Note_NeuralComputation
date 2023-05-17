@@ -39,18 +39,19 @@ Adam = Momentum + RMSProp
 Return the shape of an array
 returns tuple of ints.
 ```python
-np.shape(np.eye(3))
-np.shape([[1, 2]])
-np.shape([0])
-np.shape(0)
-```
+>>> np.shape(np.eye(3))
 (3, 3)
 
+>>> np.shape([[1, 2]])
 (1, 2)
 
+>>> np.shape([0])
 (1,)
 
+>>> np.shape(0)
 ()
+```
+
 
 **- ones(shape, dtype=None, order='C', *, like=None)**
 Return a new array of given shape and type, filled with ones.
@@ -63,7 +64,7 @@ array([1, 1, 1, 1, 1])
 
 >>> np.ones((2, 1))
 array([[1.],
-       [1.]])
+      [1.]])
 
 >>> s = (2,2)
 >>> np.ones(s)
@@ -76,21 +77,22 @@ array([[1.,  1.],
 The arrays must have the same shape.
 Join a sequence of arrays along an existing axis. 
 ```python
-a = np.array([[1, 2], [3, 4]])
-b = np.array([[5, 6]])
-np.concatenate((a, b), axis=0)
-```
-![1684301108162](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/f4893054-5935-4a21-9df2-2aefb77253f7)
+>>> a = np.array([[1, 2], [3, 4]])
+>>> b = np.array([[5, 6]])
 
-```python
-np.concatenate((a, b.T), axis=1)
+>>> np.concatenate((a, b), axis=0)
+array([[1, 2],
+       [3, 4],
+       [5, 6]])
+    
+>>> np.concatenate((a, b.T), axis=1)
+array([[1, 2, 5],
+       [3, 4, 6]])
+    
+>>> np.concatenate((a, b), axis=None)
+array([1, 2, 3, 4, 5, 6])
 ```
-![1684301117419](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/ba58122a-0196-41b9-9c46-89abe99757ed)
 
-```python
-np.concatenate((a, b), axis=None)
-```
-![1684301140782(1)](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/1bcb7f36-a2c6-46d8-b1e5-d4cb43dcaa9c)
 
 
 
