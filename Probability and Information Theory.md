@@ -29,11 +29,11 @@ Independence and Conditional Independence
 
 independence is a stronger requirement than zero covariance:
 
-independent ➡ zero covariance. 
+independent => zero covariance. 
 
-nonzero covariance ➡ dependent. 
+nonzero covariance  =>  dependent. 
 
-zero covariance ➡ no linear dependence.
+zero covariance  =>  no linear dependence.
 
 zero covariance ≠> independent.
 
