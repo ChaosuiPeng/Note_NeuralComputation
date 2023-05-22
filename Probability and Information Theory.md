@@ -15,7 +15,7 @@ discrete and continuous
 条件概率 Conditional Probability P(y = y | x = x), chain rule / product rule
 
 
-Independence and Conditional Independence
+## Independence and Conditional Independence
 
 期望值 Expectation: the expected value of some function _f(x)_ w.r.t. a probability distribution P(x), is the average or mean value, that _f_ takes on when _x_ is drawn from P.
 
@@ -64,3 +64,43 @@ multivariate normal distribution
 
 混合分布 Mixture Distribution
 
+
+## Common Functions
+
+logistic sigmoid
+
+softplus function: a smoothed version of the positive part function, which is the counterpart of the negative part function
+
+
+## Bayes' Rule
+
+## Information Theory
+Information theory is a branch of applied mathematics that revolves around quantifying how much information is present in a signal.
+
+In this context, information theory tells how to degin optimal codes and calculate the expected length of messages sampled from specific probability distributions using various encoding schemes.
+
+important intuition: learning that an unlikely event has occurred is more informative than learning that a likely event has occurred.
+ 
+the self-information of an event x = x is I(x)
+
+Nat: one nat is the amount of information gained by observing an event of probability 1/e. (if base-2, use bits and shannons)
+
+Shannon entropy H(P): the Shannon entropy of a distribution is the expected amount of information in an event drawn from tha distribution. It gives a lower bound on the number of units (bits, shannons or nats) needed on average to encode symbols drawn from a distribution P.
+
+
+**Kullback-Leibler (KL) divergence**
+
+it measures how different two separate probability distributions are. In the case of discrete variables.
+
+KL divergence is the extra amount of information needed to send a message containinig symbols drawn from probability distribution P, when we use a code that was designed to minimize the length of messages drawn from probability distribution Q.
+
+The KL divergence is 0 iff. P and Q are (almost) the same distribution.
+
+properties: non-negative, asymmetric
+
+
+## structured probabilistic models
+
+a language to describe which direct probabilistic relationships different machine learning algorithms choose to represent.
+
+cross-entropy: by minimizing the cross-entropy w.r.t. Q, we can minimize the KL divergence.
