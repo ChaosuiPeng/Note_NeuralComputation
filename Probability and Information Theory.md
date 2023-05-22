@@ -4,8 +4,6 @@ random variable x and vector-valued variables **x**
 
 discrete and continuous
 
----
-
 ## Probability Distributions
 
 概率质量 Probability Mass Functions (PMF, discrete variables) P
@@ -16,7 +14,6 @@ discrete and continuous
 
 条件概率 Conditional Probability P(y = y | x = x), chain rule / product rule
 
----
 
 Independence and Conditional Independence
 
@@ -42,7 +39,6 @@ zero covariance ≠> independent.
 
 covariance matrix.
 
----
 
 ## Probability Distributions
 
