@@ -351,7 +351,88 @@ plt.grid()
 plt.show()
 ```
 
+![1685337076455](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/5ed0727b-03d5-425b-93e1-c0bb415a932e)
+
 As we expected, **gradient descent with momentum** is much faster than the **gradient descent**. This shows the benefit of using velocity to store historical gradient information for accelerating the algorithm.
+
+
+## Nesterov Momentum
+
+Anoter algorithm which can acclerate the training speed of gradient descent is the **Nesterov Momentum**. Analogous to **Momentum**, Nesterov Momentum also introduces a variable `velocity` to store the historical information of the gradients. The difference is that it first uses the current velocity to build a `looking ahead` point. Then the gradient computation is performed at the  `looking ahead` point. The `looking ahead` point may contain more information than the current point. Therefore, the gradient at `looking ahead` point may be more precise than the `current gradient`.
+The update equation is as follows
+
+$$\mathbf{w}^{\text{(ahead)}}=\mathbf{w}^{(t)}+\alpha\mathbf{v}^{(t)}$$
+$$\mathbf{v}^{(t+1)} = \alpha\mathbf{v}^{(t)}-\eta\nabla C(\mathbf{w}^{(\text{ahead})}),$$ 
+
+where $\eta$ is a learning rate and $\alpha\in(0,1)$ is a parameter.
+Then, we update the next iterate as 
+
+$$\mathbf{w}^{(t+1)}=\mathbf{w}^{(t)}+\mathbf{v}^{(t+1)}.$$
+
+In the following, we request you to finish the following implementation of the `Nesterov Momentum` on the linear regression problem.
+
+```python
+def solve_via_nag(X, y, print_every=100,
+                               niter=2000, eta=0.5, alpha=0.8):
+    '''
+    Solves for linear regression weights with nesterov momentum.
+    Given `X` - matrix of shape (N,D) of input features
+          `y` - target y values
+          `print_every` - we report performance every 'print_every' iterations
+          `niter` - the number of iterates allowed
+          `eta` - learning rate
+          `alpha` - determines the influence of past gradients on the current update
+
+    Return 
+        `w` - weights after `niter` iterations
+        `idx_res` - the indices of iterations where we compute the cost
+        `err_res` - the cost at iterations
+    '''
+    N, D = np.shape(X)
+    # initialize all the weights to zeros
+    w = np.zeros([D])
+    v = np.zeros([D])
+    idx_res = []
+    err_res = []
+    for k in range(niter):
+        # TODO: Insert your code to update w by nesterov momentum
+        w_ahead = w + alpha * v
+        v = alpha * v - eta * gradfn(w_ahead, X, y)
+        w = w + v              
+        
+        if k % print_every == print_every - 1:
+            t_cost = cost(w, X, y)
+            print('error after %d iteration: %s' % (k+1, t_cost))
+            idx_res.append(k)
+            err_res.append(t_cost)
+    return w, idx_res, err_res
+```
+
+Now we apply nesterov momentum to solve the Boston House Price prediction problem.
+
+```python
+w_nag, idx_nag, err_nag = solve_via_nag( X=x_in, y=y_target)
+```
+
+
+### Comparison between Gradient Descent and Nesterov Momentum
+
+We can now compare the behavie of Gradient Descent and Nesterov Momentum. In particular, we will show how the `cost` of models found by the algorithm at different iterations would behave with respect to the iteration number.
+
+```python
+plt.plot(idx_gd, err_gd, color="red", linewidth=2.5, linestyle="-", label="gradient descent")
+plt.plot(idx_nag, err_nag, color="blue", linewidth=2.5, linestyle="-", label="nesterov momentum")
+plt.legend(loc='upper right', prop={'size': 12})
+plt.title('comparison between gradient descent and momentum')
+plt.xlabel("number of iterations")
+plt.ylabel("cost")
+plt.grid()
+plt.show()
+```
+
+![1685337234373](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/055b55a5-393a-47c2-9fed-aba26c62e27f)
+
+
 
 ## Minibatch Gradient Descent
 
@@ -598,5 +679,8 @@ plt.ylabel("cost")
 plt.grid()
 plt.show()      
 ```
+
+![1685337264489](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/assets/39878006/7a229c5c-1597-48cc-8fe7-f753fa79c45d)
+
 
 As we see, Adam achieves the best performance. This demonstrates the effectiveness of combining the idea of momentum and Adagrad / RMSProp.
