@@ -5,7 +5,7 @@ we have seen how to define neural networks, compute loss and make updates to the
 Now we might be thinking, What about data?
 
 Generally, when we have to deal with image, text, audio or video data, we can use standard python packages that load data into a numpy array.
-Then we can convert this array into a ``torch.*Tensor`` (see [Python_Node](https://github.com/ChaosuiPeng/Kaggle_Note/blob/main/Pytorch_Note.md) ).
+Then we can convert this array into a ``torch.*Tensor`` (see [Pytorth Node](https://github.com/ChaosuiPeng/Kaggle_Note/blob/main/Pytorch_Note.md) ).
 
 -  For images, packages such as Pillow, OpenCV are useful
 -  For audio, packages such as scipy and librosa
