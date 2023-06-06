@@ -8,5 +8,7 @@
 
 [4 Advanced Optimization Algorithms](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/blob/main/Advanced%20Optimization%20Algorithms.md)
 
+[5 Training a CNN Classifier](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/blob/main/Training%20a%20CNN%20Classifier.md)
+
 [Note_1 Probability and Information Theory](https://github.com/ChaosuiPeng/Artificial-Intelligence-and-Machine-Learning/blob/main/Probability%20and%20Information%20Theory.md)
 
