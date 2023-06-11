@@ -71,9 +71,13 @@ plt.scatter(data[num_data//2:, 0], data[num_data//2:, 1], color='blue')
 
 We will try to classify this data by training a neural network. As a reminder, our goal is to take as input a two dimensional vector $\mathbf{x} = [x_1, x_2]^\top$ and output a real number from which we can predict the output label. We consider the following structure. The neural network has three layers: the first layer has $2$ nodes, the second layer has $3$ nodes and the last layer has $1$ node. In this case, the parameters we want to learn are **weight matrices**: $W^2\in \mathbb{R}^{3\times 2}, W^3\in\mathbb{R}^{1\times 3}$ and **bias vectors**: $b^2\in\mathbb{R}^3$ and $b^3\in\mathbb{R}$. Here we initialize the weights using the [**randn**](https://numpy.org/doc/stable/reference/random/generated/numpy.random.randn.html) function, and the bias as the zero vectors.
 
+初始化模拟了二维数据：输入层 - 两节点
+假设hidden layer是三节点 - W2的matrix size和B2的vector size可以确定
+输出是判断0还是1 - 一节点，W3是1连3结点（1-by-3）以及b3是1
+
 ```python
 # First, initialize our neural network parameters.
-params = {}
+params = {} # 这里用dictionary
 params['W2'] = np.random.randn(3, 2)
 params['b2'] = np.zeros(3)
 params['W3'] = np.random.randn(3)
@@ -99,6 +103,10 @@ $$\mathbf{a}^3 = \sigma(\mathbf{z}^3)$$
 
 That is, $\mathbf{z}$ are linear functions of inputs and $\mathbf{a}$ are activations of $\mathbf{z}$.
 
+这一步是提前计算bp中间要用到的z和a。
+注意用到的是matrix product。
+另外，在python中，给vector加一个transpose不会makes any difference。
+
 ```python
 # To do: complete the implementation the forward propagation by computing z2,a2,z3,a3. 
 # This function returns the predicted output of the network, i.e., a3 in the above equation
@@ -119,13 +127,13 @@ def forward(x, params):
 
 ### Visualize the network's predictions
 
-Let's visualize the predictions of our untrained network. As we can see, the network does not succeed at classifying the points without training
+Let's visualize the predictions of our untrained network. As we can see, the network does not succeed at classifying the points **without training** （这里只是单纯用初始化的parameters去predict outputs，只做了forward）
 
 ```python
 num_points = 200
 
 # we first traverse two features in the region (-6,6)
-x1s = np.linspace(-6.0, 6.0, num_points) # 在线性空间中以均匀步长生成数字序列
+x1s = np.linspace(-6.0, 6.0, num_points) # 在线性空间中以均匀步长生成数字序列（得到vector）
 x2s = np.linspace(-6.0, 6.0, num_points)
 
 # we now use forward propagation to compute the matrix Y
@@ -136,6 +144,7 @@ for i in range(num_points):
     for j in range(num_points):
         x = np.array([x1s[i], x2s[j]])
         Y[i, j] = forward(x, params)
+        
 # we now visualize the data
 X1, X2 = np.meshgrid(x1s, x2s)
 plt.pcolormesh(X1, X2, Y, cmap=plt.cm.get_cmap('YlGn'), shading='auto')
@@ -150,10 +159,9 @@ plt.scatter(data[num_data//2:, 0], data[num_data//2:, 1], color='blue')
 Before implementing the backward propagation, we need to know the derivative of the sigmoid function
 
 $$\sigma(x)=1/(1+\exp(-x))$$
-In the following, you are requested to complete the code on computing the gradient of the sigmoid function
 
 ```python
-# To do: insert your code here to compute the gradient of the sigmod function
+# compute the gradient of the sigmod function
 
 def sigmoid_derivative(x):
     """
@@ -205,6 +213,7 @@ $$
 \frac{\partial C}{\partial \mathbf{b}^\ell}=\delta^\ell\qquad\ell=2,3.
 $$
 
+注意，hadamard product用\*表示
 ```python
 def backprop(x, y, params):
     """
@@ -231,20 +240,25 @@ def backprop(x, y, params):
     loss = (1/2) * np.square(a3 - y)
     
     # Perform backwards computation.
-    # To Do: insert your code to compute z3_bar, z2_bar, W3_bar, W2_bar, b3_bar, b2_bar
+    # compute z3_bar, z2_bar, W3_bar, W2_bar, b3_bar, b2_bar
     '''
+    back-propagated gradients 
     z3_bar is the gradient of C w.r.t. z3
     z2_bar is the gradient of C w.r.t. z2
+    
+    gradients of loss function w.r.t. weights and bias
     w3_bar is the gradient of C w.r.t. w3
     w2_bar is the gradient of C w.r.t. w2  
     b3_bar is the gradient of C w.r.t. b3
     b2_bar is the gradient of C w.r.t. b2
+    
     Hint: you may need the np.outer function to realize the multiplication v1 * v2.T for two vectors v1, v2
     '''
-    z3_bar = sigmoid_derivative(z3) * (a3 - y)
+    z3_bar = sigmoid_derivative(z3) * (a3 - y) # back-propagted gradients of the last layer
     z2_bar = np.multiply(np.dot(W3.T, z3_bar), sigmoid_derivative(z2))
-    W3_bar = z3_bar * a2 # 这里为什么不需要np.outer(z2_bar, x.T)？
-    W2_bar = np.outer(z2_bar, x.T)
+    
+    W3_bar = z3_bar * a2 # z3_bar在这里是一个real number
+    W2_bar = np.outer(z2_bar, x) # 这里的x就是a1，x.T在这里does not work。两个都是vector
     b3_bar = z3_bar
     b2_bar = z2_bar
     
@@ -279,12 +293,13 @@ params['b3'] = 0
 num_steps = 500
 eta = 5
 for step in range(num_steps):  
-    grads = {}
+    grads = {} # 依旧是dictionary
     grads['W2'] = np.zeros((3, 2))
     grads['b2'] = np.zeros(3)
     grads['W3'] = np.zeros(3)
     grads['b3'] = 0
     loss = 0
+    
     for i in range(num_data): 
         """
         tgrads is the gradient of the network w.r.t. the parameter in the i-th training example
@@ -295,11 +310,12 @@ for step in range(num_steps):
         loss += tloss        
         for k in grads:
             grads[k] += tgrads[k]
+            
     # we now compute an average of loss
     loss /= num_data  
     for k in params:
         grads[k] /= num_data  # average of the gradients
-        # To do: insert your code to do gradient descent
+        # do gradient descent
         params[k] -= eta * grads[k]
 
     # Print loss every 50 iterations
