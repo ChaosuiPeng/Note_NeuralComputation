@@ -1,4 +1,4 @@
-# Neural Computation Exercise 3: Recurrent Neural Networks (RNN)
+# Recurrent Neural Networks (RNN)
 In this exercise, you will learn the following:
 * data generation
 * What a one-hot encoding is
