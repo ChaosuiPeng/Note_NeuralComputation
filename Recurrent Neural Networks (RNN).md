@@ -54,9 +54,13 @@ The char2int dictionary will look like this: It holds all the letters/symbols th
 char2int
 ```
 
-Next, we'll be padding our input sentences to ensure that all the sentences are of standard length. While RNNs are typically able to take in variably sized inputs. We will usually want to feed training data in batches to speed up the training process. In order to use batches to train our network, we'll need to ensure that each sequence within the input data is of equal size.
- * `maxlen = len(max(text, key=len))`: finding the length of the longest string in our data.
+Next, we'll be padding our input sentences to ensure that all the sentences are of standard length. While RNNs are typically able to take in variably sized inputs. 
+We will usually want to feed training data in batches to speed up the training process. 
+In order to use batches to train our network, we'll need to ensure that each sequence within the input data is of equal size.
+ * `maxlen = len(max(text, key=len))`: finding the length of the longest string in our data. 
  * `text[i] += ' '`: padding the rest of the sentences with blank spaces to match that length.
+
+⚠ 这里用batch训练去做加速，而batch是把运算中相同的计算过程合并 以矩阵的形式去计算，所以需要of the same size。
 
 ```python
 # Finding the length of the longest string in our data
@@ -111,14 +115,15 @@ for i in range(len(text)):
 
 
 ### One-Hot Encoding
-One-hot encoding is a method of representing some some categories, in a way which avoids suggesting that some categories are more signifcant than others. 
-If we were to just use integers to represent characters the character represented by 8 is not neccessarily more important than the character represented by 1, 
+One-hot encoding is a method of representing some categories, in a way which avoids suggesting that some categories are more signifcant than others. 
+If we were to just use integers to represent characters, the character represented by 8 is not neccessarily more important than the character represented by 1, 
 however it may lead to a larger impulse. 
 To prevent this we use the integer representation explained before to dictate the index where a 1 will be present in the one-hot encoding, 
 whilst all other index positions will be 0. 
 
 #### One-hot encoding example:
-If we have dictionary containing 5 characters `{'a':0,'b':1,'c':2,'d':3,'e':4}` then the representation of the letter a would be $(1,0,0,0,0)$ and the representation of the letter d would be $(0,0,0,1,0)$.  
+If we have dictionary containing 5 characters `{'a':0,'b':1,'c':2,'d':3,'e':4}` then the representation of the letter a would be $(1,0,0,0,0)$ and 
+the representation of the letter d would be $(0,0,0,1,0)$.  
   
 Whilst one-hot encoding in our case is used for characters, it could also be used to represent words in a vocabulary or other un-ordered categorical data. 
 Before encoding our input sequence into one-hot vectors, we'll define 3 key variables:
@@ -126,7 +131,8 @@ Before encoding our input sequence into one-hot vectors, we'll define 3 key vari
 * `dict_size`: Dictionary size - The number of unique characters that we have in our text.   
 This will determine the length of each one-hot vector, as each character will correspond to a unique index in the one-hot encoded vectors.
 * `seq_len`: The length of the sequences that we're feeding into the model.  
-As we standardized the length of all our sentences to be equal to the longest sentences, this value will be the `maxlen - 1` as we removed the last character input as well
+As we standardized the length of all our sentences to be equal to the longest sentences, 
+this value will be the `maxlen - 1` as we removed the last character input as well
 * `batch_size`: The number of sentences that we defined and are going to feed into the model as a batch
 
 
