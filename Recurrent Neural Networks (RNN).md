@@ -3,7 +3,7 @@ In this exercise, you will learn the following:
 * data generation
 * What a one-hot encoding is
 * How to define an RNN model
-* How to train and test an RNN model
+* How to train and test an RNN model 
 
 ## Example One: Generate the next word in a sentence using a RNN
 We aim to predict next word in a sentence when given the first word or the first few words. 
